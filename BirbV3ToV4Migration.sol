@@ -61,29 +61,29 @@
 pragma solidity 0.8.17;
 
 interface IBEP20 {
-    function balanceOf(address account) external view returns (uint256);
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+	function balanceOf(address account) external view returns (uint256);
+	function transfer(address recipient, uint256 amount) external returns (bool);
+	function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
 }
 
 contract BirbV3ToV4Migration {
-    address public constant CEO = 0x7D70D9EDFa339895914A87E590921c0EECb3c2CC;
+	address public constant CEO = 0x7D70D9EDFa339895914A87E590921c0EECb3c2CC;
 	address public constant TOKEN_IN = 0x88888888Fc33e4ECba8958c0c2AD361089E19885; 
-    address public tokenOut;
+	address public tokenOut;
 
-    uint256 public totalDeposits;
-    bool public newTokenAvailable = false;
+	uint256 public totalDeposits;
+	bool public newTokenAvailable = false;
 
-    mapping (address => uint256) public deposits;
+	mapping (address => uint256) public deposits;
 
 	event Deposit(address indexed depositer, uint256 quantity);
-    event Redeem(address indexed redeemer, uint256 quantity);
+	event Redeem(address indexed redeemer, uint256 quantity);
 
-    modifier onlyCEO(){
-        require (msg.sender == CEO, "Only the CEO can do that");
-        _;
-    }
-    
+	modifier onlyCEO(){
+		require (msg.sender == CEO, "Only the CEO can do that");
+		_;
+	}
+	
 	constructor() {}
 
 	function sendTokens(address sender, address receiver, uint256 amount) internal returns(bool) {
@@ -91,42 +91,42 @@ contract BirbV3ToV4Migration {
 	}
 
 	function deposit() external {
-        uint256 amount = IBEP20(TOKEN_IN).balanceOf(msg.sender);
+		uint256 amount = IBEP20(TOKEN_IN).balanceOf(msg.sender);
 		sendTokens(msg.sender, address(this), amount);
 		totalDeposits += amount;
-        deposits[msg.sender] += amount;
+		deposits[msg.sender] += amount;
 		emit Deposit(msg.sender, amount);
 	}
 
-    function redeem() external {
-        require(newTokenAvailable, "Wait for migration to open");
-        uint256 amount = deposits[msg.sender];
-        if(amount == 0) return;
-        IBEP20(tokenOut).transfer(msg.sender, amount);
-        totalDeposits -= amount;
-        deposits[msg.sender] = 0;
-        emit Redeem(msg.sender, amount)
-    }
+	function redeem() external {
+		require(newTokenAvailable, "Wait for migration to open");
+		uint256 amount = deposits[msg.sender];
+		if(amount == 0) return;
+		IBEP20(tokenOut).transfer(msg.sender, amount);
+		totalDeposits -= amount;
+		deposits[msg.sender] = 0;
+		emit Redeem(msg.sender, amount)
+	}
 
-    function setNewTokenAddress(address newAddress) external onlyCEO {
-        tokenOut = newAddress;
-    }
+	function setNewTokenAddress(address newAddress) external onlyCEO {
+		tokenOut = newAddress;
+	}
 
-    function openMigration() external onlyCEO {
-        newTokenAvailable = true;
-    }
+	function openMigration() external onlyCEO {
+		newTokenAvailable = true;
+	}
 
 	function emergencyRecoverToken(address t) external onlyCEO {
 		IBEP20 tok = IBEP20(t);
 		tok.transfer(msg.sender, tok.balanceOf(address(this)));
 	}
 
-    function recoverTokenIn() external onlyCEO {
+	function recoverTokenIn() external onlyCEO {
 		IBEP20 tok = IBEP20(TOKEN_IN);
 		tok.transfer(msg.sender, tok.balanceOf(address(this)));
 	}
 
-    function emergencyRecoverTokenOut() external onlyCEO {
+	function emergencyRecoverTokenOut() external onlyCEO {
 		IBEP20 tok = IBEP20(tokenOut);
 		tok.transfer(msg.sender, tok.balanceOf(address(this)));
 	}
