@@ -315,12 +315,6 @@ contract BirbV4 is IBEP20 {
         if(status) emit ExcludedAddressFromTax(wallet);
         else emit UnExcludedAddressFromTax(wallet);
     }
-    
-    function launch() external onlyCEO{
-        require(launchTime == type(uint256).max, "Can't call this twice");
-        launchTime = block.timestamp;
-        emit Launched(launchTime);
-    }
 
     function addPair(address pairToAdd) external onlyCEO {
         pairs.push(pairToAdd);
