@@ -412,7 +412,7 @@ contract BirbV4 is IBEP20 {
         uint256 contractBalance = _balances[address(this)];
         if(contractBalance == 0) return;
         uint256 balanceBefore = marketingWallet.balance;
-        address[] path = new address[](2);
+        address[] memory path = new address[](2);
         path[0] = address(this);
         path[1] = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
 
