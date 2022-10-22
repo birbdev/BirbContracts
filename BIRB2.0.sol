@@ -386,7 +386,7 @@ contract BirbV4 is IBEP20 {
             if(balanceOf(address(this)) >= swapBirbAt) {
                 swapBirb();
             } else if(sellLiq > 0) {
-                IDEXPair.sync();
+                IDEXPair(pcsPair).sync();
             }
         }
 
