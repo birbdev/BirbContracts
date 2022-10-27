@@ -94,7 +94,7 @@ interface IDEXRouter {
 }
 
 contract BirbV4 is IBEP20 {
-    string constant _name = "Birb 2.0";
+    string constant _name = "Birb";
     string constant _symbol = "BIRB";
     uint8 constant _decimals = 18;
     uint256 _totalSupply = 100_000_000 * (10**_decimals);
