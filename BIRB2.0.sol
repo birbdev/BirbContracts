@@ -1,56 +1,54 @@
 /*
- * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK0OkkxxddooooooooooddxxkkO0KXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMMMMMMMWNK0kxdolllllloooddddddddddooollllllodxk0KNWMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMMMWNKOxdllllodxkOO0KXXNNNNWWWWNNNNXXK0OOkxdolllldxOKNWMMMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMWX0xolllodxO0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0OxdollloxOXWMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMWX0xollldxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxdllloxOXWMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMNKkollldk0NWMMMMMMMMWXK0OkxdoooooooooodxxO0KXWWMMMMMMMMMWN0kdlllokKNMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMN0xollok0NWMMMMMWN0kol:,'.....................,;coxOXWMMMMMMMWN0xollox0NMMMMMMMMMMMMMM
- * MMMMMMMMMMMMN0dllldOXWMMMMMW0xc,.....';;:clloooddddddooolcc:;,'...':oONMMMMMMMWXOdllld0NMMMMMMMMMMMM
- * MMMMMMMMMMWKxllldONWMMMMWKx:....,;clodxxxxxdddddddddddddddxxxxdol:,...,lONMMMMMMWNOdlllxKWMMMMMMMMMM
- * MMMMMMMMWXkolloOXWMMMMW0o'...,codxxxxdddoooooooooooooooooooooodddxxoc;...:xXMMMMMMWNOollokXWMMMMMMMM
- * MMMMMMMW0dlloxXWMMMMMXo'..':oxxxxdddooooooooooooooooooooooooooooooodddoc'..;kNMMMMMMWXxolld0WMMMMMMM
- * MMMMMMNOolld0WMMMMMWO;..'cdxxxxdoooooooooooooooooooooooooooooooooooooooddc'..lKMMMMMMMN0dlloONMMMMMM
- * MMMMMNklllxKWMMMMMNd'..;oxxxddooooooooooooooooooodddxkkOO000000OOOkkxdooodl;..;0WMMMMMMWKxlllkNMMMMM
- * MMMMXxlllxXMMMMMMNo...cxxxxdoooooooooolc::::coxO0KXXNNNNNNNNNNNNNNNNXK0Okxoo:..;0WMMMMMMMXxlllxXMMMM
- * MMMNxlllkNMMMMMMWx..'lxxxxdoooocclll:;'......'ckXNNNNNNNNNNNNNNNNNNNNNNNNX0Od:..:KMMMMMMMMNklllxNMMM
- * MMNklllxNMMMMMMMO,..lxxxdoooooo:,,'...:c'.......lKNNNNNNNNNNNNNNNNNNNNXNNNNNXk:..lNMMMMMMMMNxlllkNMM
- * MW0olldXMMMMMMMXc..:xxxdooooooooll;..cXNo........oKXNNNNNNNNNNX0xolc::::cldkKNO;.'kMMMMMMMMMXdlloOWM
- * MXdllo0WMMMMMMMx..,dxxxooooooooooo;...;:'......'.:kKNNNNNNNX0o;'.,;::c::;'..'cxl..lNMMMMMMMMW0olldKM
- * WklllkNMMMMMMMXc..cxxxdooooooooooo:...........;;.lKXNNNNNN0l'.,ok0KKKKXXK0ko:.....,OMMMMMMMMMNklllkW
- * KdlloKMMMMMMMMO'.,oxxdooooooooooool:.......';:;'c0NNNNNNNO;..;k0000000000KXXKkc....lNMMMMMMMMMKdlldK
- * OlllkNMMMMMMMWd..;xxxdooooooooooood0Oc,''',;;;:xXNNNNNNNO,.'cxO0O000000OOO00KX0o'..'OMMMMMMMMMNklloO
- * xllo0WMMMMMMMXc..cxxdoooooooooooookXNNKkxdddk0XNNNNNNNNKc.:kOO0000OOOO0OOO0O00KKl...oWMMMMMMMMW0lllx
- * dlloKMMMMMMMM0,..collllooooooooood0NNNNNNNNNNNNNNNNNNNNx..lOOOOO0OOOOOOOOOOO0O0KO;..:XMMMMMMMMMKolld
- * olldXMMMMMMMWd....'''''',:cloooooxKNNNNNNNNNNNNNNNNNNNXl..;xOOOOOOOkkkkkkkOOOOO0Oc..;KMMMMMMMMMXdllo
- * olldXMMMMMMKl'.',;;;;;;,'..';coookXNNNNNNNNNNNNNNNNNNNK:..',cllllllllccclllodxkOOl..;0MMMMMMMMMXdllo
- * olldXMMMMMK:..,;;;;;;;;;::;,..,:o0NNNNNNNNNNNNNNNNNNNNK:.co;..............';;;;:oc..'o0NMMMMMMMXdllo
- * dlldKMMMMXl..,,;;;;;;;;;,,;::;,.'o0NNNNNNNNNNNNNNNNNNNK:.:kko;....'',,,'..:0Oxd;.....'':0WMMMMMKdlld
- * xllo0WMWKc..',,;;;;;;;;;;,'',;::,.,oKNNNNNNNNNNNNNNNNNXl.;dxkkdc,.........';,,k0;...'c;.:XMMMMM0ollx
- * klllxOkl,..',,;;;;;;;;;;;;;'..';::,.,dXNNNNNNNNNNNNNNNNk''lxdxkkkdocc:::ccl:..dXl...,c:.,0MMMMNklllk
- * 0c,'.....',,;;;;;;;;;;;;;;;;;'..';c:'.:ONNNNNNNNNNNNNNNKc.;dxddxxxkkkkkkkxxc.'ONl..';c:.,0MMMMXdllo0
- * K:....''''',;;;;;;;;;;;;;;;;;;,'..,:c;.,xXNNNNNNNNNNNNNNO;.;oddxdddxddddddl'.dNXc..,::,..cXMMWOlllxX
- * Wx'.''''''''''',,;;;;;;;;;;;;,,'...';c:..;loxOKXNNNNNNNNNO:.'cdxxddddxxdo:.'dXNk'.,;:,.,,.:OWKdllo0W
- * MXo,,;;;;;;;;;,,,,'',;;;;;,'.,cooc;.';c:.....',:lxkOXNNNNNKd,.';:cllcc:,'':dxoc'.,;:;'';::.'dxlllkNM
- * MW0:'',,,,,;;;;::::;,''',,'.;kKXXX0x;';l;..,;;,,'''';cdOXNNNKxl:,,'',,,'',,''...';,,;;;,;c:.'clldXMM
- * MMWk;..''....'',,;;:::;,'...lO0KKKKXO:'cc'..,;;;;;;;,''';lkKNNNXXKOxl;''',,;;'.';,:dOKk;.::.'clo0WMM
- * MMMWOcodc,;c;.''...',;;::;,.;dO00KKKKl.:l,...,,'...',;;;,'',lkKXOo;'.',,,'','..,,;kKKKO;'c,.'co0WMMM
- * MMMMW0d::lllloxdl:,...',,;:;',ldkOOOx;'cl,.':;'..':::,'',;;,'.,;'.,,,'','.....','l00KOc,:;...c0WMMMM
- * MMMMMWOodo:::::ccc:;'....',;;,',;::;,,cl:'.c00kd:;cd0Oxl;'.,;;,,,,'':oxxc;oo'.,,'cxxo:,,,.,,,kWMMMMM
- * MMMMMMMNklc:;lddl:'';cll;...',,,,,,;:cc:,..:ocldo:.:xO0K0kl,.';,',lk00klcddl'..,,,;,,,'...:d0WMMMMMM
- * MMMMMMMMXd;;dkxdo:;ccclodl:,'....''''''..;oxd::dxollclxO0KK0o,.,o0KKOdlcoo::l;...'''...,oodXMMMMMMMM
- * MMMMMMMMMWKxlc:;:ldxdc:;;,,,'.,::;;;;;';dOKKKk:lO0KKOxoldxdddl;cdxxoodk00ooOKkc',,..,c:;xNWMMMMMMMMM
- * MMMMMMMMMMMNko;,:c;,''''......';ldkOO0x::lodxxo:cxOO0OdccoxkOOOkxxoclk0kllxkdo;';,...':xNMMMMMMMMMMM
- * MMMMMMMMMMMMMN0xl;....''',,,,,'...,:ldko,cdxdddl;:cclldO0kdoddxddddxxlc;:oddo:...',;ckXMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMNk:'',;;;;;::;;,...':llll;,ck0KKKOc,;d0OdloodxkOkkkdllxo:xKKOo'.,;;lONMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMN0dc;;;:clc,','..'cdkOOkdl:lkOOoldk0xllxxxkOOOOkxxOdcxolkdc,.'ok0NMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMWXOdollc'.';;,'...';coddc,;l::x00dcdOxkOdcd00OxokKold;,;c:lONWMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMWNKkc'.,;;;;,,'..,c;,cxkl,lkko:d0xkKOocdkkOklxXdcdclxOXWMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMMMMMNKkdoc:;;;,'..,cc:col;oxxccOkx0KKKKOdolooOXOkKXNMMMMMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOkdol:'..';,'',oxd:cxxO0KXKK0O0OO0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxoc;,:c:okxc:kK00XNNNNNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- *
- * BIRB 2.0
+ * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXKkdlc;,...            ...,;cldOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xl;..                              ..;lx0NWMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMMMNOd:.                                         .':d0NMMMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMWXkc'                                                 .'lkXWMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMNOc.                                                        'lONMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMWKd,                                                              ,dXWMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMW0l.                           ...........                            .oKWMMMMMMMMMMMMM
+ * MMMMMMMMMMMWKl.                     .';:codxxkkOOOOOkkkxdolc;,..                     .lKMMMMMMMMMMMM
+ * MMMMMMMMMMXo.                  .':ldO00000OOkkkkkkkkkkkkkOOO00Oxoc,.                   .dNMMMMMMMMMM
+ * MMMMMMMMWO,                 .;lxO000OkkxxddddddddooooooddodddxxkkOOko;.                  ;OWMMMMMMMM
+ * MMMMMMMXo.                .ck0K00OkxddoodddoooddddddddodoodddooddddxkOxl.                 .oNMMMMMMM
+ * MMMMMMK:                .lO0K0Okddddodooddddodddddoddooddddddddddoooodxkxc.                 :KMMMMMM
+ * MMMMWO,               .:k000OxdddddodoooddddddoddxxxkOO0000000000OOkkxdddxo,                 ;0MMMMM
+ * MMMWO'               .o0K00kdddddoddool:;;;;:ok0KXXXNNNNNNNNNNNNNNNNXXK0Oxxd;.                ,0MMMM
+ * MMM0'               .d0K0Oxdodo::llc;..      .;xKNNNNNNNNNNNNNNNNNNNNNNNNXKOx:                 ,0MMM
+ * MMK;               .o000Odddooo:'..  .;;.       :0NNNNNNNNNNNNNNNXXXKKKXXNNNXk;                 :XMM
+ * MNl                c0K0Ododooooool'  ;KK:        c0XNNNNNNNNNKkoc;,'...',:cdOKk'                 lNM
+ * Wx.               ,kK0Oxoododooodl'   ..         ,x0NNNNNNXOc'  ..,;:::;,.. .'c,                 .kM
+ * X;               .l000xddooddodddo;           ...c0XNNNNN0l.  .lk0KKKKKXK0ko;.                    :X
+ * x.               'xK0Ododddooddoodo;.     ..',..:0NNNNNN0;   'd000000000KKKXKkc.                  .k
+ * c                :OK0xdodddooododdx0k:......'':xKNNNNNNK:  .;dO0000000000000KXKd.                  l
+ * '               .l00OdddddoododdodOXNXKkdoodk0XNNNNNNNXo. 'dO00000000000000000KKo.                 ,
+ * .               .xK0kdddddoodddoox0NNNNNNNNNNNNNNNNNNNK;  ,k00000000000000000000O:                 .
+ *                 ;OK0xddddddooddodkXNNNNNNNNNNNNNNNNNNNk.  .lkOOOOOOOkkkkkkkOOOO00o.                .
+ *                 c0KOxdddoddodddodOXNNNNNNNNNNNNNNNNNNNx.   .,:ccc::::::::::cloxkOd.                .
+ *                .dK0Ododdoodooddox0NNNNNNNNNNNNNNNNNNNNx. .:;'..................'::.                .
+ * .              :OK0kdddddddddddoxKNNNNNNNNNNNNNNNNNNNNO' .lxdooooooodddddoddl'                     .
+ * .             .d00OxddoddoodddodOXNNNNNNNNNNNNNNNNNNNNK:  ;ddddddddddddddxkOk;  .                  '
+ * ;             c000kdddooddodddod0NNNNNNNNNNNNNNNNNNNNNNx. .lddxxddxddddddxkOl. ';                  :
+ * d.          .cOK0kdoooddoododddkKNNNNNNNNNNNNNNNNNNNNNNXo. .cdddddddddddxkOo. .d:                 .x
+ * 0'         'oO0OkdooddodoodododOXNNNNNNNNNNNNNNNNNNNNNNNXd. .;ldddddddxxxd:. 'x0;                 ,K
+ * Wo       .lO00Oxdool:clooddoooxKNNNNNNNNNNNNNNNNNNNNNNNNNXOc. ..;:clllc:,. .cONO'                .dW
+ * MK;    .:k00Oxdddoooc,';coddddOXNNNNNNNNNNNNNNNNNNNNNNNNNNNXOo;..      ..;oOXNNx.                :XM
+ * MWk.  ,d00Okddodooddol:'.,lodkXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXKOxdoooxkKXNNNNXl                'OMM
+ * MMWx,cO0Okdoodddooddoolc,..:xKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNK:               .xWMM
+ * MMMWX00kxdddoddooddddolcc;..lXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN0'              .dWMMM
+ * MMMMWXkddddoodddoodddoolcc;..dXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNk.             .xWMMMM
+ * MMMMMWKxddddoddoodddooolccc' 'kNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNo.            'kWMMMMM
+ * MMMMMMWXkddodddddoddddolccc:. cKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNK:            ;0WMMMMMM
+ * MMMMMMMMN0xddodddodddolccccc' .kNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNk.          .oXMMMMMMMM
+ * MMMMMMMMMWXOddoddddddolccccc;. lXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXl          ;OWMMMMMMMMM
+ * MMMMMMMMMMMWKkddddoddolccccl;. ;0XNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNk.        'xNMMMMMMMMMMM
+ * MMMMMMMMMMMMMNKkddodolcccccc;. ;O0KXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN0:       'dXMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMNKOxollcccccc,  cO000KXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXKl.    .;xXMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMWXOdlcccccc. .d000000KXXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXK0o.   'lONMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMNKkdllc,  cO000000000KXXNNNNNNNNNNNNNNNNNNNNNNNXXKK00o. .ckXWMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMWNKOo'.:k00000000000000KKXXXXXXNNNNNNNXXXXXKK00000kooOXWMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMMMMMWK0KXK0000000000000000000000KKKKK000000000KXXNNWMMMMMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNXXKK0000000000000000000000KKXXNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ * MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNXXKKKKKKKKKKKKKKXXNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
  *
  * Written by: MrGreenCrypto
  * Co-Founder of CodeCraftrs.com
@@ -93,11 +91,11 @@ interface IDEXRouter {
     ) external;
 }
 
-contract BirbV4 is IBEP20 {
-    string constant _name = "Birb";
-    string constant _symbol = "BIRB";
-    uint8 constant _decimals = 18;
-    uint256 _totalSupply = 100_000_000 * (10**_decimals);
+contract NewBirb is IBEP20 {
+    string public constant name = "Birb";
+    string public constant symbol = "BIRB";
+    uint8 public constant decimals = 18;
+    uint256 constant _totalSupply = 100_000_000 * (10**_decimals);
 
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
@@ -111,8 +109,8 @@ contract BirbV4 is IBEP20 {
     uint256 private buyToken = 0;
     uint256 private buyBurn = 0;
     uint256 private sellLiq = 2;
-    uint256 private sellMarketing = 2;
-    uint256 private sellToken = 1;
+    uint256 private sellMarketing = 3;
+    uint256 private sellToken = 0;
     uint256 private sellBurn = 0;
     uint256 private taxDivisor = 100;
     uint256 private swapBirbAt = _totalSupply / 10_000;
@@ -140,6 +138,8 @@ contract BirbV4 is IBEP20 {
     event UnExcludedAddressFromTax(address wallet);
     event AirdropsSent(address[] airdropWallets, uint256[] amount);
     event MarketingTaxSwapped(uint256 bnbReceived);
+    event PairAdded(address addedPair);
+    event PairRemoved(address removedPair);
     
     event TaxesChanged(
         uint256 sellTax,
@@ -168,16 +168,10 @@ contract BirbV4 is IBEP20 {
     }
 
     receive() external payable {}
-    function name() public pure override returns (string memory) {return _name;}
-    function totalSupply() public view override returns (uint256) {return _totalSupply;}
-    function decimals() public pure override returns (uint8) {return _decimals;}
-    function symbol() public pure override returns (string memory) {return _symbol;}
+
+    function totalSupply() public view override returns (uint256) {return _totalSupply - _balances[DEAD];}
     function balanceOf(address account) public view override returns (uint256) {return _balances[account];}
-    
-    function allowance(address holder, address spender) public view override returns (uint256) {
-        return _allowances[holder][spender];
-    }
-    
+    function allowance(address holder, address spender) public view override returns (uint256) {return _allowances[holder][spender];}
     function approveMax(address spender) external returns (bool) {return approve(spender, type(uint256).max);}
     
     function approve(address spender, uint256 amount) public override returns (bool) {
@@ -224,11 +218,7 @@ contract BirbV4 is IBEP20 {
     }
     
     function setSwapBirbAt(uint256 _swapBirbAt) external onlyCEO{
-        require(
-            _swapBirbAt >= 0 && _swapBirbAt <= _totalSupply / 50,
-            "Can't set the amount to sell to higher than 2% of totalSupply"
-        );  
-
+        require(_swapBirbAt <= _totalSupply / 50, "Can't set the amount to sell to higher than 2% of totalSupply");  
         swapBirbAt = _swapBirbAt;
         emit SwapBirbAtSet(swapBirbAt);
     }
@@ -236,31 +226,23 @@ contract BirbV4 is IBEP20 {
     function rescueAnyToken(address tokenToRescue) external onlyCEO {
         require(tokenToRescue != address(this), "Can't rescue your own");
         emit TokenRescued(tokenToRescue, IBEP20(tokenToRescue).balanceOf(address(this)));
-        IBEP20(tokenToRescue).transfer(msg.sender, IBEP20(tokenToRescue).balanceOf(address(this)));
+        IBEP20(tokenToRescue).transfer(CEO, IBEP20(tokenToRescue).balanceOf(address(this)));
     }
 
     function rescueBnb() external onlyCEO {
         emit BnbRescued(address(this).balance);
-        payable(msg.sender).transfer(address(this).balance);
+        (bool success, ) = CEO.call{value: address(this).balance}("");
+        require(success, "Something went wrong");
     }
 
-    function setSellTax(
-        uint256 newTaxDivisor,
-        uint256 newSellLiq,
-        uint256 newSellMarketing,
-        uint256 newSellToken,
-        uint256 newSellBurn
-    ) 
-        external 
-        onlyCEO 
-    {
+    function setSellTax(uint256 newTaxDivisor, uint256 newSellLiq, uint256 newSellMarketing, uint256 newSellToken, uint256 newSellBurn) external onlyCEO {
         taxDivisor     = newTaxDivisor;
         sellLiq        = newSellLiq;
         sellMarketing  = newSellMarketing;
         sellToken      = newSellToken;
         sellBurn       = newSellBurn;
         sellTax        = sellLiq + sellMarketing + sellToken + sellBurn;
-        require(buyTax <= taxDivisor / 10 || sellTax <= taxDivisor / 10, "Taxes are limited to max. 10%");
+        require(buyTax <= taxDivisor / 20 || sellTax <= taxDivisor / 20, "Taxes are limited to max. 5%");
         
         emit TaxesChanged(
             sellTax,
@@ -277,23 +259,14 @@ contract BirbV4 is IBEP20 {
         );
     }
 
-    function setBuyTax(
-        uint256 newTaxDivisor,
-        uint256 newBuyLiq,
-        uint256 newBuyMarketing,
-        uint256 newBuyToken,
-        uint256 newBuyBurn
-    ) 
-        external 
-        onlyCEO 
-    {
+    function setBuyTax(uint256 newTaxDivisor, uint256 newBuyLiq, uint256 newBuyMarketing, uint256 newBuyToken, uint256 newBuyBurn) external onlyCEO {
         taxDivisor     = newTaxDivisor;
         buyLiq         = newBuyLiq;
         buyMarketing   = newBuyMarketing;
         buyToken       = newBuyToken;
         buyBurn        = newBuyBurn;
         buyTax         = buyLiq + buyMarketing + buyToken + buyBurn;
-        require(buyTax <= taxDivisor / 10 || sellTax <= taxDivisor / 10, "Taxes are limited to max. 10%");
+        require(buyTax <= taxDivisor / 20 || sellTax <= taxDivisor / 20, "Taxes are limited to max. 5%");
         
         emit TaxesChanged(
             sellTax,
@@ -318,11 +291,14 @@ contract BirbV4 is IBEP20 {
 
     function addPair(address pairToAdd) external onlyCEO {
         pairs.push(pairToAdd);
+        emit PairAdded(pairToAdd);
     }
 
     function removeLastPair() external onlyCEO {
+        address pairToBeRemoved = pairs[pairs.length-1];
         if(pairs.length == 1) return;
         pairs.pop();
+        emit PairRemoved(pairToBeRemoved);
     }
 
     function airdropToWallets(address[] memory airdropWallets, uint256[] memory amount) external onlyCEO {
@@ -343,8 +319,8 @@ contract BirbV4 is IBEP20 {
     }
 
     function takeTax(address sender, address recipient, uint256 amount) internal returns (uint256) {
-        uint256 taxAmount;
-        uint256 totalTax;
+        uint256 taxAmount = 0;
+        uint256 totalTax = 0;
         
         if(isPair(sender)) {
             totalTax = buyTax;
