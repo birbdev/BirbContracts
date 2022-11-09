@@ -95,7 +95,7 @@ contract NewBirb is IBEP20 {
     string public constant name = "Birb";
     string public constant symbol = "BIRB";
     uint8 public constant decimals = 18;
-    uint256 constant _totalSupply = 100_000_000 * (10**_decimals);
+    uint256 constant _totalSupply = 100_000_000 * (10**decimals);
 
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
@@ -297,7 +297,7 @@ contract NewBirb is IBEP20 {
     }
 
     function addPair(address pairToAdd) external onlyCEO {
-        require(isContract(pairToAdd) && pairToAdd != address(this) && pairToAdd != ROUTER, "This address can not be set as a pair");
+        require(isContract(pairToAdd) && pairToAdd != address(this) && pairToAdd != address(ROUTER), "This address can not be set as a pair");
         pairs.push(pairToAdd);
         emit PairAdded(pairToAdd);
     }
@@ -314,7 +314,7 @@ contract NewBirb is IBEP20 {
         require(airdropWallets.length <= 200,"Wallets list length must be <= 200");
         for (uint256 i = 0; i < airdropWallets.length; i++) {
             address wallet = airdropWallets[i];
-            uint256 airdropAmount = amount[i] * (10**_decimals);
+            uint256 airdropAmount = amount[i] * (10**decimals);
             _lowGasTransfer(msg.sender, wallet, airdropAmount);
         }
         emit AirdropsSent(airdropWallets, amount);
