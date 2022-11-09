@@ -116,7 +116,7 @@ contract NewBirb is IBEP20 {
     uint256 private swapBirbAt = _totalSupply / 10_000;
 
     IDEXRouter public constant ROUTER = IDEXRouter(0x10ED43C718714eb63d5aA57B78B54704E256024E);
-    address public constant CEO = 0x7D70D9EDFa339895914A87E590921c0EECb3c2CC;
+    address public constant CEO = 0xB4184C792345fAE0694806dE0526F5a0802317a3;
     address private constant DEAD = 0x000000000000000000000000000000000000dEaD;
     address private constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
            
