@@ -95,20 +95,20 @@ contract BirbV3ToV4Migration {
 
 	function deposit() external {
 		uint256 amount = IBEP20(TOKEN_IN).balanceOf(msg.sender);
-		require(sendTokens(msg.sender, address(this), amount), "Token transfer failed");
 		totalDeposits += amount;
 		deposits[msg.sender] += amount;
 		emit Deposit(msg.sender, amount);
+        require(sendTokens(msg.sender, address(this), amount), "Token transfer failed");
 	}
 
 	function redeem() external {
 		require(newTokenAvailable, "Wait for migration to open");
 		uint256 amount = deposits[msg.sender];
 		if(amount == 0) return;
-		require(IBEP20(tokenOut).transfer(msg.sender, amount), "Token transfer failed");
-		totalDeposits -= amount;
+        totalDeposits -= amount;
 		deposits[msg.sender] = 0;
 		emit Redeem(msg.sender, amount);
+		require(IBEP20(tokenOut).transfer(msg.sender, amount), "Token transfer failed");
 	}
 
 	function setNewTokenAddress(address newAddress) external onlyCEO {
