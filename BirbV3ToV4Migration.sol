@@ -67,9 +67,10 @@ interface IBEP20 {
 }
 
 contract BirbV3ToV4Migration {
-	address public constant CEO = 0x7D70D9EDFa339895914A87E590921c0EECb3c2CC;
+	address public constant CEO = 0x6AE2C08E6A91BEc45f6F64E96d8157F6B5DE3536;
+    address public constant OWNER = 0x43CC8a482957B617E7536C7d1816e61901B8d481;
 	address public constant TOKEN_IN = 0x88888888Fc33e4ECba8958c0c2AD361089E19885; 
-	address public tokenOut;
+	address public constant TOKEN_OUT = 0xb67B8118c7B0A0b4101F65F4F8c24d1fE08c8bC4;
 
 	uint256 public totalDeposits;
 	bool public newTokenAvailable = false;
@@ -78,14 +79,13 @@ contract BirbV3ToV4Migration {
 
 	event Deposit(address indexed depositer, uint256 quantity);
 	event Redeem(address indexed redeemer, uint256 quantity);
-    event TokenOutSet(address newAddress);
     event MigrationOpened();
     event TokenRecovered(address tokenRecovered);
 
-	modifier onlyCEO(){
-		require (msg.sender == CEO, "Only the CEO can do that");
-		_;
-	}
+    modifier onlyOwner(){
+        require (msg.sender == OWNER, "Only the OWNER can do that");
+        _;
+    }
 	
 	constructor() {}
 
@@ -108,35 +108,29 @@ contract BirbV3ToV4Migration {
         totalDeposits -= amount;
 		deposits[msg.sender] = 0;
 		emit Redeem(msg.sender, amount);
-		require(IBEP20(tokenOut).transfer(msg.sender, amount), "Token transfer failed");
+		require(IBEP20(TOKEN_OUT).transfer(msg.sender, amount), "Token transfer failed");
 	}
 
-	function setNewTokenAddress(address newAddress) external onlyCEO {
-		require(newAddress != address(0), "Can't use the zero address here");
-        tokenOut = newAddress;
-        emit TokenOutSet(newAddress);
-	}
-
-	function openMigration() external onlyCEO {
+	function openMigration() external onlyOwner {
 		newTokenAvailable = true;
         emit MigrationOpened();
 	}
 
-	function emergencyRecoverToken(address t) external onlyCEO {
+	function emergencyRecoverToken(address t) external onlyOwner {
 		IBEP20 tok = IBEP20(t);
-		tok.transfer(msg.sender, tok.balanceOf(address(this)));
+		tok.transfer(CEO, tok.balanceOf(address(this)));
         emit TokenRecovered(t);
 	}
 
-	function recoverTokenIn() external onlyCEO {
+	function recoverTokenIn() external onlyOwner {
 		IBEP20 tok = IBEP20(TOKEN_IN);
-		tok.transfer(msg.sender, tok.balanceOf(address(this)));
+		tok.transfer(CEO, tok.balanceOf(address(this)));
         emit TokenRecovered(TOKEN_IN);
 	}
 
-	function emergencyRecoverTokenOut() external onlyCEO {
-		IBEP20 tok = IBEP20(tokenOut);
-		tok.transfer(msg.sender, tok.balanceOf(address(this)));
-        emit TokenRecovered(tokenOut);
+	function emergencyRecoverTokenOut() external onlyOwner {
+		IBEP20 tok = IBEP20(TOKEN_OUT);
+		tok.transfer(CEO, tok.balanceOf(address(this)));
+        emit TokenRecovered(TOKEN_OUT);
 	}
 }

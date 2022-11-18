@@ -117,6 +117,7 @@ contract NewBirb is IBEP20 {
 
     IDEXRouter public constant ROUTER = IDEXRouter(0x10ED43C718714eb63d5aA57B78B54704E256024E);
     address public constant CEO = 0x6AE2C08E6A91BEc45f6F64E96d8157F6B5DE3536;
+    address public constant OWNER = 0x43CC8a482957B617E7536C7d1816e61901B8d481;
     address private constant DEAD = 0x000000000000000000000000000000000000dEaD;
     address private constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
            
@@ -125,8 +126,8 @@ contract NewBirb is IBEP20 {
     address public immutable pcsPair;
     address[] public pairs;
 
-    modifier onlyCEO(){
-        require (msg.sender == CEO, "Only the CEO can do that");
+    modifier onlyOwner(){
+        require (msg.sender == OWNER, "Only the OWNER can do that");
         _;
     }
 
@@ -210,32 +211,32 @@ contract NewBirb is IBEP20 {
         return _transferFrom(sender, recipient, amount);
     }
 
-    function setBirbWallets(address marketingAddress, address tokenAddress) external onlyCEO {
+    function setBirbWallets(address marketingAddress, address tokenAddress) external onlyOwner {
         require(marketingAddress != address(0) && tokenAddress != address(0), "Can't use zero addresses here");
         marketingWallet = marketingAddress;
         tokenWallet = tokenAddress;
         emit WalletsChanged(marketingWallet, tokenWallet);
     }
     
-    function setSwapBirbAt(uint256 _swapBirbAt) external onlyCEO{
+    function setSwapBirbAt(uint256 _swapBirbAt) external onlyOwner{
         require(_swapBirbAt <= _totalSupply / 50, "Can't set the amount to sell to higher than 2% of totalSupply");  
         swapBirbAt = _swapBirbAt;
         emit SwapBirbAtSet(swapBirbAt);
     }
 
-    function rescueAnyToken(address tokenToRescue) external onlyCEO {
+    function rescueAnyToken(address tokenToRescue) external onlyOwner {
         require(tokenToRescue != address(this), "Can't rescue your own");
         emit TokenRescued(tokenToRescue, IBEP20(tokenToRescue).balanceOf(address(this)));
         IBEP20(tokenToRescue).transfer(CEO, IBEP20(tokenToRescue).balanceOf(address(this)));
     }
 
-    function rescueBnb() external onlyCEO {
+    function rescueBnb() external onlyOwner {
         emit BnbRescued(address(this).balance);
         (bool success, ) = CEO.call{value: address(this).balance}("");
         require(success, "Something went wrong");
     }
 
-    function setSellTax(uint256 newTaxDivisor, uint256 newSellLiq, uint256 newSellMarketing, uint256 newSellToken, uint256 newSellBurn) external onlyCEO {
+    function setSellTax(uint256 newTaxDivisor, uint256 newSellLiq, uint256 newSellMarketing, uint256 newSellToken, uint256 newSellBurn) external onlyOwner {
         taxDivisor     = newTaxDivisor;
         sellLiq        = newSellLiq;
         sellMarketing  = newSellMarketing;
@@ -259,7 +260,7 @@ contract NewBirb is IBEP20 {
         );
     }
 
-    function setBuyTax(uint256 newTaxDivisor, uint256 newBuyLiq, uint256 newBuyMarketing, uint256 newBuyToken, uint256 newBuyBurn) external onlyCEO {
+    function setBuyTax(uint256 newTaxDivisor, uint256 newBuyLiq, uint256 newBuyMarketing, uint256 newBuyToken, uint256 newBuyBurn) external onlyOwner {
         taxDivisor     = newTaxDivisor;
         buyLiq         = newBuyLiq;
         buyMarketing   = newBuyMarketing;
@@ -283,7 +284,7 @@ contract NewBirb is IBEP20 {
         );
     }
 
-    function setAddressTaxStatus(address wallet, bool status) external onlyCEO {
+    function setAddressTaxStatus(address wallet, bool status) external onlyOwner {
         limitless[wallet] = status;
         if(status) emit ExcludedAddressFromTax(wallet);
         else emit UnExcludedAddressFromTax(wallet);
@@ -296,28 +297,17 @@ contract NewBirb is IBEP20 {
         return (codehash != accountHash && codehash != 0x0);
     }
 
-    function addPair(address pairToAdd) external onlyCEO {
+    function addPair(address pairToAdd) external onlyOwner {
         require(isContract(pairToAdd) && pairToAdd != address(this) && pairToAdd != address(ROUTER), "This address can not be set as a pair");
         pairs.push(pairToAdd);
         emit PairAdded(pairToAdd);
     }
 
-    function removeLastPair() external onlyCEO {
+    function removeLastPair() external onlyOwner {
         address pairToBeRemoved = pairs[pairs.length-1];
         if(pairs.length == 1) return;
         pairs.pop();
         emit PairRemoved(pairToBeRemoved);
-    }
-
-    function airdropToWallets(address[] memory airdropWallets, uint256[] memory amount) external onlyCEO {
-        require(airdropWallets.length == amount.length,"Arrays must be the same length");
-        require(airdropWallets.length <= 200,"Wallets list length must be <= 200");
-        for (uint256 i = 0; i < airdropWallets.length; i++) {
-            address wallet = airdropWallets[i];
-            uint256 airdropAmount = amount[i] * (10**decimals);
-            _lowGasTransfer(msg.sender, wallet, airdropAmount);
-        }
-        emit AirdropsSent(airdropWallets, amount);
     }
 
     function _transferFrom(address sender, address recipient, uint256 amount) internal returns (bool) {
