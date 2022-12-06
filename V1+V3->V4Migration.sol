@@ -66,7 +66,7 @@ interface IBEP20 {
 	function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
 }
 
-contract BirbV3ToV4Migration {
+contract BirbV1V3ToV4Migration {
 	address public constant CEO = 0x6AE2C08E6A91BEc45f6F64E96d8157F6B5DE3536;
     address public constant OWNER = 0x43CC8a482957B617E7536C7d1816e61901B8d481;
 	address public constant TOKEN_IN = 0x88888888Fc33e4ECba8958c0c2AD361089E19885; 
@@ -77,6 +77,8 @@ contract BirbV3ToV4Migration {
 	bool public newTokenAvailable = false;
 
 	mapping (address => uint256) public deposits;
+	mapping (address => uint256) public depositsV1;
+	mapping (address => uint256) public depositsV3;
 
 	event Deposit(address indexed depositer, uint256 quantity);
 	event DepositV1(address indexed depositer, uint256 quantity);
@@ -91,24 +93,26 @@ contract BirbV3ToV4Migration {
 	
 	constructor() {}
 
-	function sendTokens(address sender, address receiver, uint256 amount) internal returns(bool) {
-		return IBEP20(TOKEN_IN).transferFrom(sender, receiver, amount);
+	function sendTokens(address token, address sender, address receiver, uint256 amount) internal returns(bool) {
+		return IBEP20(token).transferFrom(sender, receiver, amount);
 	}
 
 	function deposit() external {
-		uint256 amount = IBEP20(TOKEN_INV1).balanceOf(msg.sender);
-		totalDeposits += amount;
-		deposits[msg.sender] += amount;
-		emit Deposit(msg.sender, amount);
-        require(sendTokens(msg.sender, address(this), amount), "Token transfer failed");
-	}
-
-	function depositV1() external {
 		uint256 amount = IBEP20(TOKEN_IN).balanceOf(msg.sender);
 		totalDeposits += amount;
 		deposits[msg.sender] += amount;
+		depositsV3[msg.sender] += amount;
+		emit Deposit(msg.sender, amount);
+        require(sendTokens(TOKEN_IN, msg.sender, address(this), amount), "Token transfer failed");
+	}
+
+	function depositV1() external {
+		uint256 amount = IBEP20(TOKEN_INV1).balanceOf(msg.sender);
+		totalDeposits += amount;
+		deposits[msg.sender] += amount;
+		depositsV1[msg.sender] += amount;
 		emit DepositV1(msg.sender, amount);
-        require(sendTokens(msg.sender, address(this), amount), "Token transfer failed");
+        require(sendTokens(TOKEN_INV1, msg.sender, address(this), amount), "Token transfer failed");
 	}
 
 	function redeem() external {
